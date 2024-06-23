@@ -19,9 +19,9 @@ def resize_image(path, size=(224, 224)):
 
 
 # Image and tag generator
-def get_data(unique_tags):
+def get_data(unique_tags, img_count):
     with MongoDBClient() as db_client:
-        limit = 10_000
+        limit = img_count
         docs = db_client.get_small_image_data(limit=limit)
 
         x = np.zeros((limit, 224, 224, 3), dtype=np.float32)
